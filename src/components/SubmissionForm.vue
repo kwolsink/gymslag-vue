@@ -1,5 +1,5 @@
 <script setup>
-import {Select, InputNumber, FloatLabel, DatePicker, Button} from "primevue";
+import {Select, InputNumber, FloatLabel, DatePicker, Button, Card} from "primevue";
 import {ref} from "vue";
 
 
@@ -50,37 +50,65 @@ function handleSubmission() {
 </script>
 
 <template>
-  <form @submit.prevent>
-    <div>
-      <Select v-model="selected" :options="lifters" placeholder="Naam"></Select>
-    </div>
-    <div class="h-row">
-      <FloatLabel>
-        <InputNumber v-model="weightKg" inputId="weight"></InputNumber>
-        <label for="weight">Gewicht (in KG)</label>
-      </FloatLabel>
-      <FloatLabel>
-        <InputNumber v-model="reps" inputId="reps"></InputNumber>
-        <label for="reps">Reps</label>
-      </FloatLabel>
-    </div>
-    <div>
-      <FloatLabel>
-        <DatePicker v-model="date" inputId="date"></DatePicker>
-        <label for="date">Datum</label>
-      </FloatLabel>
-    </div>
-    <div>
-      <Button type="submit" label="Submit" @click="handleSubmission()"></Button>
-    </div>
-  </form>
+  <Card>
+    <template #title>Voeg een sessie toe</template>
+    <template #content>
+      <div class="form">
+        <div class="row">
+          <Select class="w-100" v-model="selected" :options="lifters" placeholder="Naam"></Select>
+        </div>
+        <div class="row h-row">
+          <div class="p-r">
+            <FloatLabel>
+              <InputNumber v-model="weightKg" inputId="weight"></InputNumber>
+              <label for="weight">Gewicht (in KG)</label>
+            </FloatLabel>
+          </div>
+          <div>
+            <FloatLabel>
+              <InputNumber v-model="reps" inputId="reps"></InputNumber>
+              <label for="reps">Reps</label>
+            </FloatLabel>
+          </div>
+        </div>
+        <div class="row">
+          <FloatLabel>
+            <DatePicker v-model="date" inputId="date"></DatePicker>
+            <label for="date">Datum</label>
+          </FloatLabel>
+        </div>
+        <div class="row">
+          <Button type="submit" label="Submit" @click="handleSubmission()"></Button>
+        </div>
+      </div>
+    </template>
+  </Card>
 </template>
 
 <style scoped>
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  margin: 0.5em;
+}
 
 .h-row {
   display: flex;
   flex-direction: row;
 }
+
+.w-100 {
+  width: 100%;
+}
+
+.p-r {
+  padding-right: 1em;
+}
+
+
 
 </style>
