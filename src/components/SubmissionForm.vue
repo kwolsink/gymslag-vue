@@ -93,7 +93,7 @@ function handleSubmission() {
 }
 
 .row {
-  margin: 0.5em;
+  margin: 1em;
 }
 
 .h-row {
