@@ -34,7 +34,6 @@ const exercise = route.params.exercise;
 
 const logEntries = ref([])
 
-
 async function onSubmit(submission) {
   logEntries.value.push(submission)
 
@@ -46,6 +45,23 @@ async function onSubmit(submission) {
     body: JSON.stringify(submission)
   })
 }
+
+(async function onLoad() {
+  const response = await fetch(`http://localhost:8080/exercise/${exercise}`, {
+    headers: {
+      "Content-Type": "application/json"
+    },
+  })
+
+  const entries = await response.json()
+
+  logEntries.value = entries.map((entry) => {
+    return {
+      ...entry,
+      date: new Date(entry.date)
+    }
+  })
+})()
 
 </script>
 
