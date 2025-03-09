@@ -37,9 +37,11 @@ const logEntries = ref([])
 
 const toast = useToast()
 
+const baseUrl = import.meta.env.BASE_URL
+
 async function onSubmit(submission) {
 
-  const response = await fetch(`http://localhost:8080/exercise/${exercise}`, {
+  const response = await fetch(`${baseUrl}/exercise/${exercise}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -67,7 +69,7 @@ async function onSubmit(submission) {
 }
 
 (async function onLoad() {
-  const response = await fetch(`http://localhost:8080/exercise/${exercise}`, {
+  const response = await fetch(`${baseUrl}/exercise/${exercise}`, {
     headers: {
       "Content-Type": "application/json"
     },
