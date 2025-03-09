@@ -23,8 +23,6 @@ function toChartData(logEntries) {
     return map;
   }, new Map());
 
-  console.log([...entriesByName])
-
   const datasets = [...entriesByName].map((entry) => {
 
     return {
