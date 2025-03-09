@@ -38,7 +38,6 @@ const logEntries = ref([])
 const toast = useToast()
 
 async function onSubmit(submission) {
-  logEntries.value.push(submission)
 
   const response = await fetch(`http://localhost:8080/exercise/${exercise}`, {
     method: "POST",
@@ -58,6 +57,7 @@ async function onSubmit(submission) {
       life: 7000
     })
   } else {
+    logEntries.value.push(submission)
     toast.add({
       severity: "success",
       summary: "Sessie is succesvol toegevoegd",
