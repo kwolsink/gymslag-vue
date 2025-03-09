@@ -16,6 +16,7 @@ watch(() => props.logEntries, async (logEntries) => {
 
 function toChartData(logEntries) {
   logEntries.sort((a, b) => a.date - b.date)
+  console.log(logEntries)
   const entriesByName = logEntries.reduce((map, entry) => {
     if (!map.has(entry.lifter)) {
       map.set(entry.lifter, []);
