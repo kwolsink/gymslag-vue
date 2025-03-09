@@ -25,16 +25,6 @@ const tableData = computed(() => {
   })
 })
 
-// const testData = [
-//   {
-//     name: "Kasper",
-//     reps: 5,
-//     weightKg: 100,
-//     projectedMax: 120,
-//     date: Date.now()
-//   }
-// ]
-
 </script>
 
 <template>
