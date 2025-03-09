@@ -39,15 +39,9 @@ function toChartData(logEntries) {
   })
 
   return {
-    // labels: getLastMonths(),
     datasets: datasets
   }
 
-}
-
-function getLastMonths(count = 7) {
-  const now = new Date();
-  return Array.from({length: count}, (_, i) => new Date(now.getFullYear(), now.getMonth() - i, 1));
 }
 
 let chart;
