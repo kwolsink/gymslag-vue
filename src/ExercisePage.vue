@@ -16,7 +16,7 @@
 
 
 <script setup>
-import {Button} from "primevue";
+import {Button, useToast} from "primevue";
 import LogList from "./components/LogList.vue";
 import SubmissionForm from "./components/SubmissionForm.vue";
 import {ref} from "vue";
@@ -34,16 +34,36 @@ const exercise = route.params.exercise;
 
 const logEntries = ref([])
 
+
+const toast = useToast()
+
 async function onSubmit(submission) {
   logEntries.value.push(submission)
 
-  await fetch(`http://localhost:8080/exercise/${exercise}`, {
+  const response = await fetch(`http://localhost:8080/exercise/${exercise}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(submission)
   })
+
+  if (response.status > 299) {
+    const errorBody = await response.json()
+
+    toast.add({
+      severity: "error",
+      summary: "Er is iets mis gegaan",
+      detail: errorBody.message,
+      life: 7000
+    })
+  } else {
+    toast.add({
+      severity: "success",
+      summary: "Sessie is succesvol toegevoegd",
+      life: 7000
+    })
+  }
 }
 
 (async function onLoad() {
