@@ -1,6 +1,7 @@
 <script setup>
 import {DataTable, Column} from "primevue"
 import {computed} from "vue";
+import {calculateOneRepMax} from "../model/functions.js";
 
 const props = defineProps(
     {
@@ -14,7 +15,7 @@ const tableData = computed(() => {
       name: entry.name,
       weight: entry.weightKg + " kg",
       reps: entry.reps,
-      projectedMax: "TODO",
+      projectedMax: calculateOneRepMax(entry.weightKg, entry.reps) + " kg",
       date: entry.date.toLocaleDateString('en-GB', {
         day: '2-digit',
         month: 'short',
