@@ -37,7 +37,7 @@ const logEntries = ref([])
 
 const toast = useToast()
 
-const baseUrl = import.meta.env.BASE_URL
+const baseUrl = "https://gymslag-backend-shy-grass-200.fly.dev"
 
 async function onSubmit(submission) {
 
