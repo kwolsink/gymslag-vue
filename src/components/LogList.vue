@@ -16,11 +16,7 @@ const tableData = computed(() => {
       weight: entry.weightInKg + " kg",
       reps: entry.reps,
       projectedMax: calculateOneRepMax(entry.weightInKg, entry.reps) + " kg",
-      date: entry.date.toLocaleDateString('en-GB', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric'
-      }).replace(',', '')
+      date: entry.date
     }
   })
 })
@@ -32,7 +28,17 @@ const tableData = computed(() => {
     <Column field="weight" header="Gewicht"></Column>
     <Column field="reps" header="Reps"></Column>
     <Column field="projectedMax" header="Projected 1RM" :sortable="true"></Column>
-    <Column field="date" header="Datum" :sortable="true"></Column>
+    <Column field="date" header="Datum" :sortable="true">
+      <template #body="{ data, field }">
+        {{
+          data[field].toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric'
+          }).replace(',', '')
+        }}
+      </template>
+    </Column>
   </DataTable>
 </template>
 
