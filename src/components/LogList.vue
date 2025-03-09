@@ -15,7 +15,11 @@ const tableData = computed(() => {
       weight: entry.weightKg + " kg",
       reps: entry.reps,
       projectedMax: "TODO",
-      date: entry.date
+      date: entry.date.toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+      }).replace(',', '')
     }
   })
 })

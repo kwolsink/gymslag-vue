@@ -37,12 +37,14 @@ function handleSubmission() {
     weightKg: weightKg.value,
     date: date.value
   }
+
   selected.value = undefined
   reps.value = undefined
   weightKg.value = undefined
   date.value = undefined
 
   emit('submit', entry)
+
 }
 
 </script>

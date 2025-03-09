@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <LogList :log-entries="logs"></LogList>
-    <SubmissionForm @submit="(entry) => logs.push(entry)"></SubmissionForm>
+    <LogList :log-entries="logEntries"></LogList>
+    <SubmissionForm @submit="(entry) => logEntries.push(entry)"></SubmissionForm>
   </div>
 </template>
 
@@ -11,14 +11,7 @@ import LogList from "./components/LogList.vue";
 import SubmissionForm from "./components/SubmissionForm.vue";
 import {ref} from "vue";
 
-const logs = ref([
-  {
-    name: "Kasper",
-    reps: 5,
-    weightKg: 100,
-    date: Date.now()
-  }
-])
+const logEntries = ref([])
 
 
 </script>
