@@ -1,8 +1,9 @@
 <script setup>
-import {Select, InputNumber, FloatLabel, DatePicker, Button, Card} from "primevue";
-import {ref} from "vue";
+import {Select, InputNumber, FloatLabel, DatePicker, Button, Card, useToast} from "primevue";
+import {h, ref} from "vue";
 
 
+const toast = useToast()
 const emit = defineEmits(["submit"])
 
 const selected = ref()
@@ -30,6 +31,7 @@ const weightKg = ref()
 const reps = ref()
 const date = ref()
 
+
 function handleSubmission() {
   const entry = {
     name: selected.value,
@@ -43,8 +45,18 @@ function handleSubmission() {
   weightKg.value = undefined
   date.value = undefined
 
+  toast.add({
+    severity: "success",
+    summary: "Sessie is succesvol toegevoegd",
+    life: 7000
+  })
+
   emit('submit', entry)
 
+}
+
+function undoSubmission() {
+  console.log("foo")
 }
 
 </script>

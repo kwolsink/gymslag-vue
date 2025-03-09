@@ -33,8 +33,6 @@ const route = useRoute();
 const exercise = route.params.exercise;
 
 const logEntries = ref([])
-
-
 </script>
 
 <style scoped>
