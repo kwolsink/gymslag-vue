@@ -1,11 +1,10 @@
 <template>
-  <HomePage></HomePage>
+  <RouterView></RouterView>
 </template>
 
 
 <script setup>
-
-import HomePage from "./HomePage.vue";
+import {RouterView} from "vue-router";
 </script>
 
 <style scoped>

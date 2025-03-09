@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <Title>Bench</Title>
+    <div class="component">
+      <Button variant="outlined" @click="back()">
+        Terug
+      </Button>
+    </div>
+    <Title>{{ exercise }}</Title>
     <div class="chart-container">
       <LogChart class="component chart" :log-entries="logEntries"></LogChart>
     </div>
@@ -11,11 +16,21 @@
 
 
 <script setup>
+import {Button} from "primevue";
 import LogList from "./components/LogList.vue";
 import SubmissionForm from "./components/SubmissionForm.vue";
 import {ref} from "vue";
 import Title from "./components/Title.vue";
 import LogChart from "./components/LogChart.vue";
+import {useRoute} from "vue-router";
+import {router} from "./router.js";
+
+function back() {
+  router.back()
+}
+
+const route = useRoute();
+const exercise = route.params.exercise;
 
 const logEntries = ref([])
 

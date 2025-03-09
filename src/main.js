@@ -3,6 +3,7 @@ import './style.css'
 import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
 import App from './App.vue'
+import {router} from "./router.js";
 
 
 
@@ -12,5 +13,7 @@ app.use(PrimeVue, {
         preset: Aura
     }
 })
+
+app.use(router)
 
 app.mount('#app')

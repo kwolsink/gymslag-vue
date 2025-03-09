@@ -1,8 +1,9 @@
 <script setup>
 import {Button} from "primevue";
+import {router} from "./router.js";
 
-function route() {
-
+function route(exercise) {
+  router.push(`/exercise/${exercise}`)
 }
 
 
@@ -11,16 +12,16 @@ function route() {
 <template>
   <div class="container">
     <div class="quadrant top-left">
-      <Button class="exercise"  severity=“info” variant="outlined"><h2>Bench</h2></Button>
+      <Button class="exercise"  severity=“info” variant="outlined" @click="route('Bench')"><h2>Bench</h2></Button>
     </div>
     <div class="quadrant top-right">
-      <Button class="exercise" severity=“warn” variant="outlined"><h2>Squat</h2></Button>
+      <Button class="exercise" severity=“warn” variant="outlined" @click="route('Squat')"><h2>Squat</h2></Button>
     </div>
     <div class="quadrant bottom-left">
-      <Button class="exercise" severity=“danger” variant="outlined"><h2>Overhead press</h2></Button>
+      <Button class="exercise" severity=“danger” variant="outlined" @click="route('Overhead press')"><h2>Overhead press</h2></Button>
     </div>
     <div class="quadrant bottom-right">
-      <Button class="exercise" severity=“help” variant="outlined"><h2>Deadlift</h2></Button>
+      <Button class="exercise" severity=“help” variant="outlined" @click="route('Deadlift')"><h2>Deadlift</h2></Button>
     </div>
   </div>
 </template>
