@@ -26,14 +26,13 @@ const tableData = computed(() => {
 })
 
 </script>
-
 <template>
-  <DataTable :value="tableData">
-    <Column field="name" header="Naam"></Column>
+  <DataTable :value="tableData" striped-rows paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]">
+  <Column field="name" header="Naam"></Column>
     <Column field="weight" header="Gewicht"></Column>
     <Column field="reps" header="Reps"></Column>
-    <Column field="projectedMax" header="Projected 1RM"></Column>
-    <Column field="date" header="Datum"></Column>
+    <Column field="projectedMax" header="Projected 1RM" :sortable="true"></Column>
+    <Column field="date" header="Datum" :sortable="true"></Column>
   </DataTable>
 </template>
 
