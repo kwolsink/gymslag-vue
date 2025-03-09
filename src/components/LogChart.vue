@@ -16,10 +16,10 @@ watch(() => props.logEntries, async (logEntries) => {
 
 function toChartData(logEntries) {
   const entriesByName = logEntries.reduce((map, entry) => {
-    if (!map.has(entry.name)) {
-      map.set(entry.name, []);
+    if (!map.has(entry.lifter)) {
+      map.set(entry.lifter, []);
     }
-    map.get(entry.name).push(entry);
+    map.get(entry.lifter).push(entry);
     return map;
   }, new Map());
 
@@ -32,7 +32,7 @@ function toChartData(logEntries) {
       data: entry[1].map((entry) => {
         return {
           x: entry.date,
-          y: calculateOneRepMax(entry.weightKg, entry.reps)
+          y: calculateOneRepMax(entry.weightInKg, entry.reps)
         }
       })
     }

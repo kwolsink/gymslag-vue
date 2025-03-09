@@ -10,7 +10,7 @@
       <LogChart class="component chart" :log-entries="logEntries"></LogChart>
     </div>
     <LogList class="component" :log-entries="logEntries"></LogList>
-    <SubmissionForm class="component" @submit="(entry) => logEntries.push(entry)"></SubmissionForm>
+    <SubmissionForm class="component" @submit="(submission) => onSubmit(submission)"></SubmissionForm>
   </div>
 </template>
 
@@ -33,6 +33,20 @@ const route = useRoute();
 const exercise = route.params.exercise;
 
 const logEntries = ref([])
+
+
+async function onSubmit(submission) {
+  logEntries.value.push(submission)
+
+  await fetch(`http://localhost:8080/exercise/${exercise}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(submission)
+  })
+}
+
 </script>
 
 <style scoped>

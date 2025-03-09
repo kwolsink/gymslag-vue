@@ -12,10 +12,10 @@ const props = defineProps(
 const tableData = computed(() => {
   return props.logEntries.map(entry => {
     return {
-      name: entry.name,
-      weight: entry.weightKg + " kg",
+      name: entry.lifter,
+      weight: entry.weightInKg + " kg",
       reps: entry.reps,
-      projectedMax: calculateOneRepMax(entry.weightKg, entry.reps) + " kg",
+      projectedMax: calculateOneRepMax(entry.weightInKg, entry.reps) + " kg",
       date: entry.date.toLocaleDateString('en-GB', {
         day: '2-digit',
         month: 'short',

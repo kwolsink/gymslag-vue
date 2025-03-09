@@ -1,30 +1,30 @@
 <script setup>
-import {Select, InputNumber, FloatLabel, DatePicker, Button, Card, useToast} from "primevue";
-import {h, ref} from "vue";
+import {Button, Card, DatePicker, FloatLabel, InputNumber, Select, useToast} from "primevue";
+import {ref} from "vue";
 
 
 const toast = useToast()
 const emit = defineEmits(["submit"])
 
-const selected = ref()
+const lifter = ref()
 const lifters = [
-    "Kasper",
-    "Dieter",
-    "Jerra",
-    "Jos",
-    "Patrick",
-    "Ben",
-    "Berend",
-    "Chris",
-    "Connie",
-    "Bergschijt",
-    "Entes",
-    "Kreupel",
-    "Mark",
-    "Mico",
-    "Rogier",
-    "Rutger",
-    "Sander"
+  "Kasper",
+  "Dieter",
+  "Jerra",
+  "Jos",
+  "Patrick",
+  "Ben",
+  "Berend",
+  "Chris",
+  "Connie",
+  "Bergschijt",
+  "Entes",
+  "Kreupel",
+  "Mark",
+  "Mico",
+  "Rogier",
+  "Rutger",
+  "Sander"
 ]
 
 const weightKg = ref()
@@ -34,13 +34,13 @@ const date = ref()
 
 function handleSubmission() {
   const entry = {
-    name: selected.value,
+    lifter: lifter.value,
     reps: reps.value,
-    weightKg: weightKg.value,
+    weightInKg: weightKg.value,
     date: date.value
   }
 
-  selected.value = undefined
+  lifter.value = undefined
   reps.value = undefined
   weightKg.value = undefined
   date.value = undefined
@@ -55,10 +55,6 @@ function handleSubmission() {
 
 }
 
-function undoSubmission() {
-  console.log("foo")
-}
-
 </script>
 
 <template>
@@ -67,7 +63,7 @@ function undoSubmission() {
     <template #content>
       <div class="form">
         <div class="row">
-          <Select class="w-100" v-model="selected" :options="lifters" placeholder="Naam"></Select>
+          <Select class="w-100" v-model="lifter" :options="lifters" placeholder="Naam"></Select>
         </div>
         <div class="row h-row">
           <div class="p-r">
@@ -120,7 +116,6 @@ function undoSubmission() {
 .p-r {
   padding-right: 1em;
 }
-
 
 
 </style>
