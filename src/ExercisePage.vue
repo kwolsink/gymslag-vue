@@ -37,10 +37,9 @@ const logEntries = ref([])
 
 const toast = useToast()
 
-const baseUrl = "https://gymslag-backend-shy-grass-200.fly.dev"
+const baseUrl = import.meta.env.VITE_API_BASE_URL
 
 async function onSubmit(submission) {
-
   const response = await fetch(`${baseUrl}/exercise/${exercise}`, {
     method: "POST",
     headers: {
@@ -74,6 +73,7 @@ async function onSubmit(submission) {
       "Content-Type": "application/json"
     },
   })
+  console.log(baseUrl)
 
   const entries = await response.json()
 
