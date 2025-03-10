@@ -9,7 +9,6 @@ const props = defineProps({
 })
 
 watch(() => props.logEntries, async (logEntries) => {
-  console.log("FOO")
   await nextTick()
   render(logEntries)
 }, {deep: true, immediate: true});
