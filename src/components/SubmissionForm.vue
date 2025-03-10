@@ -4,6 +4,9 @@ import {ref} from "vue";
 
 
 const emit = defineEmits(["submit"])
+const props = defineProps({
+  isBackendReady: Boolean
+})
 
 const lifter = ref()
 const lifters = [
@@ -78,7 +81,7 @@ function handleSubmission() {
           </FloatLabel>
         </div>
         <div class="row">
-          <Button type="submit" label="Submit" @click="handleSubmission()"></Button>
+          <Button :disabled="!props.isBackendReady" type="submit" label="Submit" @click="handleSubmission()"></Button>
         </div>
       </div>
     </template>

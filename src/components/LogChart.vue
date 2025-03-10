@@ -9,9 +9,10 @@ const props = defineProps({
 })
 
 watch(() => props.logEntries, async (logEntries) => {
+  console.log("FOO")
   await nextTick()
   render(logEntries)
-}, {deep: true});
+}, {deep: true, immediate: true});
 
 
 function toChartData(logEntries) {
@@ -69,12 +70,9 @@ function render(logEntries) {
 </script>
 
 <template>
-  <canvas v-if="logEntries.length > 0" id="log-entries"></canvas>
-  <p v-else>Nog geen data</p>
+  <canvas id="log-entries"></canvas>
 </template>
 
 <style scoped>
-p {
-  font-style: italic;
-}
+
 </style>

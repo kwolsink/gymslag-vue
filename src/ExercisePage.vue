@@ -7,10 +7,12 @@
     </div>
     <Title>{{ exercise }}</Title>
     <div class="chart-container">
-      <LogChart class="component chart" :log-entries="logEntries"></LogChart>
+      <p class="info-message" v-if="!isBackendReady">De server is aan het opstarten, dit kan even duren...</p>
+      <LogChart class="component chart" v-else-if="logEntries.length > 0" :log-entries="logEntries"></LogChart>
+      <p class="info-message" v-else>Nog geen data</p>
     </div>
     <LogList class="component" :log-entries="logEntries"></LogList>
-    <SubmissionForm class="component" @submit="(submission) => onSubmit(submission)"></SubmissionForm>
+    <SubmissionForm :is-backend-ready="isBackendReady" class="component" @submit="(submission) => onSubmit(submission)"></SubmissionForm>
   </div>
 </template>
 
@@ -31,9 +33,9 @@ function back() {
 
 const route = useRoute();
 const exercise = route.params.exercise;
+const isBackendReady = ref(false)
 
 const logEntries = ref([])
-
 
 const toast = useToast()
 
@@ -68,12 +70,17 @@ async function onSubmit(submission) {
 }
 
 (async function onLoad() {
+  // reset backend ready status
+  isBackendReady.value = false
+
   const response = await fetch(`${baseUrl}/exercise/${exercise}`, {
     headers: {
       "Content-Type": "application/json"
     },
   })
-  console.log(baseUrl)
+
+  // Once we have fetched these entries, we can know the backend is ready
+  isBackendReady.value = true
 
   const entries = await response.json()
 
@@ -84,6 +91,7 @@ async function onSubmit(submission) {
     }
   })
 })()
+
 
 </script>
 
@@ -106,6 +114,10 @@ async function onSubmit(submission) {
 .chart {
   max-width: 900px;
   max-height: 500px;
+}
+
+.info-message {
+  font-style: italic;
 }
 
 
